@@ -9,13 +9,13 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->app->make('config')->set('app.url', env('APP_URL', 'http://localhost'));
     }
 
     public function boot(): void
     {
-        if ($url = config('app.url')) {
-            URL::forceRootUrl($url);
+        if (str_starts_with(config('app.url'), 'https://')) {
+            URL::forceScheme('https');
         }
     }
 }
