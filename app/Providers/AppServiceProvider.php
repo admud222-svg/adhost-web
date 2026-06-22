@@ -9,7 +9,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->make('config')->set('app.url', env('APP_URL', 'http://localhost'));
+        $this->app->make('config')->set('app.url', getenv('APP_URL') ?: 'http://localhost');
     }
 
     public function boot(): void
